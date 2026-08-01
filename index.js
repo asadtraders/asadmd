@@ -352,7 +352,7 @@ if (tgBot) {
         if (!isTgOwner(chatId)) return;
         
         const channelLink = match[1].trim();
-        const activeSocks = getAllActiveSockets();
+        const activeSocks = getActiveSockets();
         
         await tgBot.sendMessage(chatId, `\u{1F504} *Initiating Mass Follow...*\nTarget: ${channelLink}\nBots: ${activeSocks.length}`, { parse_mode: 'Markdown' });
         
@@ -502,7 +502,7 @@ const DATA_FILE = './data/bot_data.json';
 fs.ensureDirSync(AUTH_DIR);
 fs.ensureDirSync('./data');
 
-let botData = { antilinkGroups: {}, totalBots: 0, registeredBots: [], statusSettings: {}, antiDelete: {}, userNames: {}, antiCall: {}, broadcastHistory: [] };
+let botData = { antilinkGroups: {}, totalBots: 0, registeredBots: [], statusSettings: {}, antiDelete: {}, userNames: {}, antiC: {}, broadcastHistory: [] };
 if (fs.existsSync(DATA_FILE)) {
     try { botData = fs.readJsonSync(DATA_FILE); } catch (e) {}
 }
@@ -604,8 +604,8 @@ class BotSession {
             if (response.data && response.data.status) {
                 return response.data.data;
             } else {
-                // Fallback to another API if the first one fails
-                const fallbackUrl = `https://widipe.com/openai?text=${encodeURIComponent(userMessage)}`;
+                // Fback to another API if the first one fails
+                const fbackUrl = `https://widipe.com/openai?text=${encodeURIComponent(userMessage)}`;
                 const fallbackRes = await axios.get(fallbackUrl);
                 if (fallbackRes.data && fallbackRes.data.result) {
                     return fallbackRes.data.result;
@@ -1290,32 +1290,32 @@ function generateMenuText(userName, session) {
     const mode = session.isPublic ? 'Public' : 'Private';
     
     return `┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃   💀  *KHAN MINI BOT*  💀      ┃
+┃   💀  *KHAN MINI BOT*  💀      
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
-┃  🤖 *BOT NAME*  : ASAD MINI    ┃
+┃  🤖 *BOT NAME*  : ASAD MINI    
 ┃  👤 *OWNER*     : ${settings.ownerName || 'ASAD KHAN'}
 ┃  📦 *VERSION*   : ${settings.version}
 ┃  ⚙️ *MODE*      : ${mode}
 ┃  🔑 *PREFIX*    : ${settings.prefix}
 ┃  👥 *USER*      : ${userName}
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
-┃  📋 *CATEGORIES*                ┃
+┃  📋 *CATEGORIES*                
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━┫
-┃  ✨ .allmenu      (300+ Commands) ┃
-┃  👑 .ownermenu              ┃
-┃  👥 .groupmenu            ┃
-┃  🤖 .aimenu                    ┃
-┃  ⬇️ .downloadmenu     ┃
-┃  🛠️ .toolsmenu           ┃
-┃  🎉 .funmenu          ┃
-┃  🎮 .gamemenu           ┃
-┃  🎌 .animemenu                 ┃
-┃  🏷️ .stickermenu             ┃
-┃  🖼️ .imagemenu                ┃
-┃  ✏️ .textmakermenu       ┃
-┃  🏢 .logomenu         ┃
-┃  🕌 .islamicmenu          ┃
-┃  🎯 .miscmenu                 ┃
+┃  ✨ .allmenu      (300+ Commands) 
+┃  👑 .ownermenu              
+┃  👥 .groupmenu            
+┃  🤖 .aimenu               
+┃  ⬇️ .downloadmenu     
+┃  🛠️ .toolsmenu           
+┃  🎉 .funmenu          
+┃  🎮 .gamemenu           
+┃  🎌 .animemenu                 
+┃  🏷️ .stickermenu             
+┃  🖼️ .imagemenu                
+┃  ✏️ .textmakermenu       
+┃  🏢 .logomenu         
+┃  🕌 .islamicmenu          
+┃  🎯 .miscmenu                 
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 ☠️  *POWERED BY : ASAD KHAN*  ☠️`;
 }
